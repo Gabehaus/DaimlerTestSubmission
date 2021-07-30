@@ -1,4 +1,9 @@
 import React from "react"
+import PropTypes from "prop-types"
+
+TableBody.propTypes = {
+  selectedComp: PropTypes.object
+}
 
 function TableBody({ selectedComp }) {
   return (

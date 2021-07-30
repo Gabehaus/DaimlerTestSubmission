@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-
+import PropTypes from "prop-types"
 import { responseFromApi } from "../data.js"
 import PrefixArray from "../components/PrefixArray"
 
@@ -47,3 +47,9 @@ const HomeMain = () => {
 }
 
 export default HomeMain
+
+HomeMain.propTypes = {
+  compArr: PropTypes.string,
+  prefixArr: PropTypes.array,
+  sortedLocArr: PropTypes.array
+}

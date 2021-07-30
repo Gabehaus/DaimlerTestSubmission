@@ -2,8 +2,16 @@ import React, { useState } from "react"
 // import { object } from "prop-types"
 import TableBody from "./TableBody"
 import RunTests from "./RunTests"
+import PropTypes from "prop-types"
+
+ComponentObject.propTypes = {
+  compObj: PropTypes.object,
+  compArr: PropTypes.array,
+  prefixArr: PropTypes.array
+}
 
 function ComponentObject({ compObj, compArr, prefixArr }) {
+  //the required result for task 1 is the compObj prop included in this component
   const [clickedPre, setClickedPre] = useState("AG")
   const firstPrefix = prefixArr[0]
   const firstLocation = Object.keys(compObj[firstPrefix]).sort()[0]

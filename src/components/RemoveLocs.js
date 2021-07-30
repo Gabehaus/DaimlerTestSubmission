@@ -1,5 +1,12 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import ObjectWithPrunedLocations from "./ObjectWithPrunedLocations"
+import PropTypes from "prop-types"
+
+RemoveLocs.propTypes = {
+  compObj: PropTypes.object,
+  compArr: PropTypes.array,
+  prefixArr: PropTypes.array
+}
 
 function RemoveLocs({ compObj, compArr, prefixArr }) {
   const [possiblyPrunedObj, setPossiblyPrunedObj] = useState(compObj)
@@ -18,17 +25,14 @@ function RemoveLocs({ compObj, compArr, prefixArr }) {
         let objCopy = { ...possiblyPrunedObj }
         delete objCopy[prefix][elem]
         setPossiblyPrunedObj(objCopy)
+        return null
       })
     }
   }
 
-  useEffect(() => {
-    console.log("prune", propertiesToPrune)
-  }, [propertiesToPrune])
-
   return (
     <div>
-      <h1>Test Question 1b</h1>
+      <h1>Task 1b</h1>
       <h2>
         Enter comma separated locations without quotation marks or spaces - do
         not bound with array brackets - ex. AGAAA,AG008

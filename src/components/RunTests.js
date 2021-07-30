@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react"
 import { responseFromApi } from "../data"
+import PropTypes from "prop-types"
+
+RunTests.propTypes = {
+  compObj: PropTypes.object,
+  prefixArr: PropTypes.array
+}
 
 function RunTests({ compObj, prefixArr }) {
   const origCompArray = responseFromApi.data.dashboard.components
@@ -48,10 +54,13 @@ function RunTests({ compObj, prefixArr }) {
       prefixArr.map(prefix => {
         const locationsArr = Object.keys(compObj[prefix])
         locationsOfNewObj = [...locationsOfNewObj, ...locationsArr]
+        return null
       })
 
       //compare arrayWithAllComponentsOfNewComponentObj to origCompArray
       let matchResults = []
+
+      //map through locations and find components (which contain each location) in new and old component array
       locationsOfNewObj.map(location => {
         let newComp = arrayWithAllComponentsOfNewComponentObj.filter(
           comp => comp.location === location
@@ -60,11 +69,13 @@ function RunTests({ compObj, prefixArr }) {
         let oldComp = origCompArray.filter(
           comp => comp.location === location
         )[0]
+
+        //push results of each comparison of components containing identical location values
         matchResults.push(newComp === oldComp)
+        return null
       })
 
-      console.log("matchResults", matchResults)
-
+      //check for any failures in results array
       if (
         !matchResults.includes(false) &&
         matchResults.length === origCompArray.length
@@ -77,7 +88,7 @@ function RunTests({ compObj, prefixArr }) {
 
     test1()
     test2()
-  }, [apiComponentsLength, compObj, prefixArr])
+  }, [apiComponentsLength, compObj, prefixArr, origCompArray])
   return (
     <div
       style={{
@@ -86,7 +97,7 @@ function RunTests({ compObj, prefixArr }) {
         wordWrap: "break-word"
       }}
     >
-      <h1>Test Question 1a</h1>
+      <h1>Task 1a</h1>
       <table>
         <thead>
           <tr>
